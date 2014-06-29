@@ -1,0 +1,1 @@
+obj-$(CONFIG_ARCH_MSM8960)	+= msm8960/

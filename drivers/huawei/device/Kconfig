@@ -1,0 +1,20 @@
+menu "huawei linux device driver support package"
+
+source "drivers/huawei/device/accelerometer/Kconfig"
+
+source "drivers/huawei/device/compass/Kconfig"
+
+source "drivers/huawei/device/light/Kconfig"
+
+source "drivers/huawei/device/gyroscope/Kconfig"
+
+source "drivers/huawei/device/touchscreen/Kconfig"
+
+source "drivers/huawei/device/touchkey/Kconfig"
+
+source "drivers/huawei/device/gauge/Kconfig"
+source "drivers/huawei/device/usbswitch/Kconfig"
+
+source "drivers/huawei/device/ak6921af/Kconfig"
+
+endmenu

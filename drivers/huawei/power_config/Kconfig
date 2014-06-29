@@ -1,0 +1,20 @@
+#================================================================================
+#================================================================================
+menuconfig HW_POWER
+	bool "config_hw_power"
+	default y
+	help
+	  Say Y here, and a list of supported regulators config will be displayed.
+	  This option doesn't affect the kernel.
+
+	  If unsure, say Y.
+
+if HW_POWER
+
+config  HW_POWER_TREE
+	bool "config_hw_power_tree"
+	default y
+	help
+          Say Y here to enable support config_hw_power
+   
+endif

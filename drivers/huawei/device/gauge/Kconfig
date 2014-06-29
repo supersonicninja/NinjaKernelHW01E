@@ -1,0 +1,22 @@
+#
+# fuel gauge driver configuration
+#
+menuconfig INPUT_FUEL_GAUGE
+	bool "fuel gauge"
+	default y
+	help
+	  Say Y here, and a list of supported fuel gauge will be displayed.
+	  This option doesn't affect the kernel.
+
+	 
+
+if INPUT_FUEL_GAUGE
+
+config BATTERY_BQ275x0
+	tristate "bq27510 fule gauge driver"
+  depends on I2C
+	default y 
+	help
+	  Say Y here if you have the bq27510 fuel gauge.
+	  
+endif

@@ -1,0 +1,17 @@
+menu "huawei linux device driver support package"
+
+source "drivers/huawei/device/Kconfig"
+
+#ifdef CONFIG_HUAWEI_GPIO_UNITE
+source "drivers/huawei/gpio/Kconfig"
+#endif
+
+#ifdef CONFIG_HW_POWER_TREE
+source "drivers/huawei/power_config/Kconfig"
+#endif
+
+#ifdef CONFIG_HUAWEI_SUSPEND_GPIO
+source "drivers/huawei/gpio/Kconfig"
+#endif
+
+endmenu

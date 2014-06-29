@@ -1,0 +1,12 @@
+#
+# usbswitch device configuration
+#
+
+menu "usbswitch support"
+
+config HUAWEI_USBSWITCH
+	tristate "HUAWEI_USBSWITCH"
+	default y
+	help
+
+endmenu

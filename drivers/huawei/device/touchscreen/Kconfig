@@ -1,0 +1,31 @@
+#
+# Touchscreen driver configuration
+#
+menuconfig INPUT_TOUCHSCREEN
+	bool "Touchscreens"
+	help
+	  Say Y here, and a list of supported touchscreens will be displayed.
+	  This option doesn't affect the kernel.
+
+	  If unsure, say Y.
+
+if INPUT_TOUCHSCREEN
+
+config TOUCHSCREEN_MXT224E_ATMEL
+        default n
+	tristate "Atmel mXT224E touchscreens"
+	depends on I2C
+	help
+          Say Y here to enable support Atmel mXT224E
+config  TOUCHSCREEN_RMI4_SYNAPTICS
+        default n
+	tristate "synaptics_i2c_rmi_1564"
+	depends on I2C
+	help
+          Say Y here to enable support synaptics_i2c_rmi_1564
+config  SYNAPTICS_UPDATE_RMI_TS_FIRMWARE
+        default n	
+	bool "SYNAPTICS Touchscreen firmware update"
+	help
+          Say Y here to enable support synaptics_i2c_rmi_1564
+endif

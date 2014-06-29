@@ -1,0 +1,23 @@
+#
+# MM_TUNER subsystem configuration
+#
+
+menuconfig MM_TUNER
+	tristate "MM_TUNRER support"
+	---help---
+	  MM_TUNRER.
+
+
+
+config MMTUNER
+	boolean
+	default y
+
+config ISDBTUNER
+    bool "isdb tuner support"
+	help
+	  Choose this option if you want to use isdb tuner.
+	
+	default n
+
+

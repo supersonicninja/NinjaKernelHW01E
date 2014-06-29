@@ -1,0 +1,127 @@
+#### WCN WLAN CONFIG ####
+#
+# MSM Board Selection
+#
+# CONFIG_WIFI_CONTROL_FUNC is not set
+# CONFIG_WIFI_MEM_PREALLOC is not set
+CONFIG_MSM_WCNSS_SSR_8960=y
+#
+# Wireless device drivers
+#
+# CONFIG_AF_RXRPC is not set
+CONFIG_FIB_RULES=y
+CONFIG_WIRELESS=y
+CONFIG_WIRELESS_EXT=y
+CONFIG_WEXT_CORE=y
+CONFIG_WEXT_PROC=y
+CONFIG_WEXT_SPY=y
+CONFIG_WEXT_PRIV=y
+CONFIG_CFG80211=y
+# CONFIG_NL80211_TESTMODE is not set
+# CONFIG_CFG80211_DEVELOPER_WARNINGS is not set
+# CONFIG_CFG80211_REG_DEBUG is not set
+CONFIG_CFG80211_DEFAULT_PS=y
+# CONFIG_CFG80211_DEBUGFS is not set
+# CONFIG_CFG80211_INTERNAL_REGDB is not set
+# CONFIG_CFG80211_WEXT is not set
+CONFIG_WIRELESS_EXT_SYSFS=y
+# CONFIG_LIB80211 is not set
+# CONFIG_CFG80211_ALLOW_RECONNECT is not set
+#
+# SCSI Transports
+#
+CONFIG_NETDEVICES=y
+# CONFIG_IFB is not set
+CONFIG_DUMMY=y
+# CONFIG_BONDING is not set
+# CONFIG_MACVLAN is not set
+# CONFIG_EQUALIZER is not set
+CONFIG_TUN=y
+# CONFIG_VETH is not set
+CONFIG_MII=y
+CONFIG_PHYLIB=y
+#
+# MII PHY device drivers
+#
+# CONFIG_NETDEV_1000 is not set
+# CONFIG_STMMAC_ETH is not set
+# CONFIG_QFEC is not set
+# CONFIG_NETDEV_10000 is not set
+CONFIG_WLAN=y
+# CONFIG_USB_ZD1201 is not set
+# CONFIG_USB_NET_RNDIS_WLAN is not set
+# CONFIG_LIBRA_SDIOIF is not set
+CONFIG_WCNSS_CORE=y
+# CONFIG_ATH_COMMON is not set
+# CONFIG_BCM4329 is not set
+# CONFIG_BCMDHD is not set
+# CONFIG_BCMDHD_FW_PATH is not set
+# CONFIG_BCMDHD_NVRAM_PATH is not set
+# CONFIG_HOSTAP is not set
+# CONFIG_IWM is not set
+# CONFIG_LIBERTAS is not set
+# CONFIG_MWIFIEX is not set
+#
+# MMC/SD/SDIO Host Controller Drivers
+#
+# CONFIG_MMC_MSM_SDC4_SUPPORT is not set
+# CONFIG_MMC_MSM_SDC4_8_BIT_SUPPORT is not set
+#
+# Library routines
+#
+# CONFIG_AVERAGE is not set
+
+
+#### WCN BT CONFIG ####
+
+CONFIG_BT_WCN = y
+
+#
+# Bluetooth device drivers
+#
+CONFIG_BT=y
+CONFIG_BT_L2CAP=y
+CONFIG_BT_SCO=y
+CONFIG_BT_RFCOMM=y
+CONFIG_BT_RFCOMM_TTY=y
+CONFIG_BT_BNEP=y
+CONFIG_BT_BNEP_MC_FILTER=y
+CONFIG_BT_BNEP_PROTO_FILTER=y
+CONFIG_BT_HIDP=y
+
+CONFIG_BT_HCISMD=y
+# CONFIG_MAC80211 is not set
+# CONFIG_WIMAX is not set
+CONFIG_RFKILL=y
+CONFIG_RFKILL_PM=y
+CONFIG_RFKILL_LEDS=y
+# CONFIG_RFKILL_INPUT is not set
+# CONFIG_RFKILL_REGULATOR is not set
+# CONFIG_RFKILL_GPIO is not set
+# CONFIG_NET_9P is not set
+# CONFIG_CAIF is not set
+# CONFIG_CEPH_LIB is not set
+
+
+#
+# Non-8250 serial port support
+#
+# CONFIG_SERIAL_BCM_BT_LPM is not set
+
+
+#
+# HID
+##
+CONFIG_HID_SUPPORT=y
+CONFIG_HID=y
+# CONFIG_HIDRAW is not set
+
+#
+# Non-8250 serial port support
+#
+CONFIG_WCN_BT=y
+#
+
+
+
+

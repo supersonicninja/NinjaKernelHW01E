@@ -1,0 +1,33 @@
+#
+# Input core configuration
+#
+menuconfig HUAWEI_FEATURE_INPUT_TOUCHKEY
+	bool "Touchkeys"
+	default y
+	help
+	  Say Y here, and a list of supported touchkeys will be displayed.
+	  This option doesn't affect the kernel.
+
+	  If unsure, say Y.
+
+if HUAWEI_FEATURE_INPUT_TOUCHKEY
+
+config HUAWEI_FEATURE_TOUCHKEY_ATMEL
+	tristate "Atmel touch keypad support"
+	default n
+	help
+	  Say Y here if you want to use the Atmel touch keypad.
+
+	  To compile this driver as a module, choose M here: the
+	  module will be called Atmel-touchkey.
+
+config HUAWEI_FEATURE_TOUCHKEY_BL
+	tristate "Atmel touch key backlight support"
+	default y
+	help
+	  Say Y here if you want to use the Atmel touch keypad.
+
+	  To compile this driver as a module, choose M here: the
+	  module will be called Touchkey-backlight.
+endif
+

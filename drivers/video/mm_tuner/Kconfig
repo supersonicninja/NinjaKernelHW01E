@@ -1,0 +1,4 @@
+#
+# MM_TUNER subsystem configuration
+#
+source drivers/video/mm_tuner/src/Kconfig
