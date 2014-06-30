@@ -368,7 +368,13 @@ LINUXINCLUDE    := -I$(srctree)/arch/$(hdr-arch)/include \
 
 KBUILD_CPPFLAGS := -D__KERNEL__
 
-KBUILD_CFLAGS   := -march=armv7-a -mcpu=cortex-a9 -mfpu=neon -mfloat-abi=softfp
+KBUILD_CFLAGS   := -march=armv7-a -mcpu=cortex-a9 -mfpu=neon -mfloat-abi=softfp \
+-Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
+-fno-strict-aliasing -fno-common \
+-Werror-implicit-function-declaration \
+-Wno-format-security \
+-fno-delete-null-pointer-checks \
+-Wno-maybe-uninitialized -Wno-array-bounds -Wno-switch -Wno-unused-value -Wno-sizeof-pointer-memaccess -Wno-address -Wno-uninitialized
 KBUILD_AFLAGS_KERNEL :=
 KBUILD_CFLAGS_KERNEL :=
 KBUILD_AFLAGS   := -D__ASSEMBLY__
