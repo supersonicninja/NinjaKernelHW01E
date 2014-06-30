@@ -27,7 +27,7 @@
 #include <mach/restart.h>
 #include "devices.h"
 #include "board-8960.h"
-#include <board-mahimahi-tpa2028d1.h> 
+#include "board-mahimahi-tpa2028d1.h" 
 #include <hsad/config_interface.h>
 
 #define I2C_SURF 1

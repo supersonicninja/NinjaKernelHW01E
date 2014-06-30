@@ -33,7 +33,7 @@
 #include <linux/input.h>
 #include <linux/workqueue.h>
 #include <linux/freezer.h>
-#include <akm8975.h>
+#include "akm8975.h"
 #include <linux/earlysuspend.h>
 #include <hsad/config_interface.h>
 
