@@ -368,7 +368,7 @@ LINUXINCLUDE    := -I$(srctree)/arch/$(hdr-arch)/include \
 
 KBUILD_CPPFLAGS := -D__KERNEL__
 
-KBUILD_CFLAGS   := -march=armv7-a -mcpu=cortex-a9 -mfpu=neon-vfpv4 -marm -mfloat-abi=softfp -mvectorize-with-neon-quad \
+KBUILD_CFLAGS   := -mcpu=cortex-a15 -mfpu=neon-vfpv4 -marm -mfloat-abi=softfp -mvectorize-with-neon-quad \
 -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 -fno-strict-aliasing -fno-common \
 -Werror-implicit-function-declaration \
