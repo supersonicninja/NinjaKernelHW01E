@@ -1,0 +1,10 @@
+--- net/bluetooth/sco.c
++++ net/bluetooth/sco.c
+@@ -378,6 +378,7 @@
+ 			sco_chan_del(sk, ECONNRESET);
+ 		break;
+ 
++	case BT_CONNECT2:
+ 	case BT_CONNECT:
+ 	case BT_DISCONN:
+ 		sco_chan_del(sk, ECONNRESET);

@@ -1,8 +1,8 @@
 VERSION = 3
 PATCHLEVEL = 0
-SUBLEVEL = 8
+SUBLEVEL = 101
 EXTRAVERSION =
-NAME = Sneaky Weasel
+NAME = Sodden Ben Lomond
 
 # *DOCUMENTATION*
 # To see a list of typical targets execute "make help"
@@ -369,12 +369,8 @@ LINUXINCLUDE    := -I$(srctree)/arch/$(hdr-arch)/include \
 KBUILD_CPPFLAGS := -D__KERNEL__
 
 KBUILD_CFLAGS   := -mcpu=cortex-a15 -mfpu=neon-vfpv4 -marm -mfloat-abi=softfp -mvectorize-with-neon-quad \
--Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 -fno-strict-aliasing -fno-common \
--Werror-implicit-function-declaration \
--Wno-format-security \
--fno-delete-null-pointer-checks \
--Wno-maybe-uninitialized -Wno-array-bounds -Wno-switch -Wno-unused-value -Wno-sizeof-pointer-memaccess -Wno-address -Wno-uninitialized
+-fno-delete-null-pointer-checks 
 KBUILD_AFLAGS_KERNEL :=
 KBUILD_CFLAGS_KERNEL :=
 KBUILD_AFLAGS   := -D__ASSEMBLY__

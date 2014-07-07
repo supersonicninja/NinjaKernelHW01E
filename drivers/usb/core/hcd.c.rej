@@ -1,0 +1,11 @@
+--- drivers/usb/core/hcd.c
++++ drivers/usb/core/hcd.c
+@@ -1761,6 +1758,8 @@
+ 		struct usb_interface *iface = usb_ifnum_to_if(udev,
+ 				cur_alt->desc.bInterfaceNumber);
+ 
++		if (!iface)
++			return -EINVAL;
+ 		if (iface->resetting_device) {
+ 			/*
+ 			 * The USB core just reset the device, so the xHCI host

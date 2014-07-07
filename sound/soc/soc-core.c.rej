@@ -1,0 +1,50 @@
+--- sound/soc/soc-core.c
++++ sound/soc/soc-core.c
+@@ -1267,14 +1269,15 @@
+ 	 */
+ 	for (i = 0; i < card->num_rtd; i++) {
+ 		struct snd_soc_dai *cpu_dai = card->rtd[i].cpu_dai;
+-		if (cpu_dai->driver->ac97_control) {
+-			dev_dbg(dev, "Resuming AC97 immediately\n");
+-			soc_resume_deferred(&card->deferred_resume_work);
+-		} else {
+-			dev_dbg(dev, "Scheduling resume work\n");
+-			if (!schedule_work(&card->deferred_resume_work))
+-				dev_err(dev, "resume work item may be lost\n");
+-		}
++		ac97_control |= cpu_dai->driver->ac97_control;
++	}
++	if (ac97_control) {
++		dev_dbg(dev, "Resuming AC97 immediately\n");
++		soc_resume_deferred(&card->deferred_resume_work);
++	} else {
++		dev_dbg(dev, "Scheduling resume work\n");
++		if (!schedule_work(&card->deferred_resume_work))
++			dev_err(dev, "resume work item may be lost\n");
+ 	}
+ 
+ 	return 0;
+@@ -1931,9 +1934,20 @@
+ 		 "%s", card->name);
+ 	snprintf(card->snd_card->longname, sizeof(card->snd_card->longname),
+ 		 "%s", card->long_name ? card->long_name : card->name);
+-	if (card->driver_name)
+-		strlcpy(card->snd_card->driver, card->driver_name,
+-			sizeof(card->snd_card->driver));
++	snprintf(card->snd_card->driver, sizeof(card->snd_card->driver),
++		 "%s", card->driver_name ? card->driver_name : card->name);
++	for (i = 0; i < ARRAY_SIZE(card->snd_card->driver); i++) {
++		switch (card->snd_card->driver[i]) {
++		case '_':
++		case '-':
++		case '\0':
++			break;
++		default:
++			if (!isalnum(card->snd_card->driver[i]))
++				card->snd_card->driver[i] = '_';
++			break;
++		}
++	}
+ 
+ 	if (card->late_probe) {
+ 		ret = card->late_probe(card);

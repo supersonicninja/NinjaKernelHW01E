@@ -1,0 +1,10 @@
+--- drivers/cpufreq/cpufreq_stats.c
++++ drivers/cpufreq/cpufreq_stats.c
+@@ -329,6 +329,7 @@
+ 		cpufreq_update_policy(cpu);
+ 		break;
+ 	case CPU_DOWN_PREPARE:
++	case CPU_DOWN_PREPARE_FROZEN:
+ 		cpufreq_stats_free_sysfs(cpu);
+ 		break;
+ 	case CPU_DEAD:

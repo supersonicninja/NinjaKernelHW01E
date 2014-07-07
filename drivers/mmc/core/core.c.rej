@@ -1,0 +1,35 @@
+--- drivers/mmc/core/core.c
++++ drivers/mmc/core/core.c
+@@ -1053,10 +1074,14 @@
+ 	 * time required to reach a stable voltage.
+ 	 */
+ 	mmc_delay(10);
++
++	mmc_host_clk_release(host);
+ }
+ 
+-static void mmc_power_off(struct mmc_host *host)
++void mmc_power_off(struct mmc_host *host)
+ {
++	mmc_host_clk_hold(host);
++
+ 	host->ios.clock = 0;
+ 	host->ios.vdd = 0;
+ 
+@@ -1074,6 +1099,8 @@
+ 	host->ios.bus_width = MMC_BUS_WIDTH_1;
+ 	host->ios.timing = MMC_TIMING_LEGACY;
+ 	mmc_set_ios(host);
++
++	mmc_host_clk_release(host);
+ }
+ 
+ /*
+@@ -1788,6 +1813,7 @@
+ 				host->bus_ops->remove(host);
+ 			mmc_claim_host(host);
+ 			mmc_detach_bus(host);
++			mmc_power_off(host);
+ 			mmc_release_host(host);
+ 			host->pm_flags = 0;
+ 			err = 0;

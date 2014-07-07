@@ -1,0 +1,31 @@
+--- drivers/bluetooth/btusb.c
++++ drivers/bluetooth/btusb.c
+@@ -128,16 +151,27 @@
+ 	/* Atheros 3011 with sflash firmware */
+ 	{ USB_DEVICE(0x0cf3, 0x3002), .driver_info = BTUSB_IGNORE },
+ 	{ USB_DEVICE(0x13d3, 0x3304), .driver_info = BTUSB_IGNORE },
++	{ USB_DEVICE(0x0930, 0x0215), .driver_info = BTUSB_IGNORE },
++	{ USB_DEVICE(0x0489, 0xe03d), .driver_info = BTUSB_IGNORE },
++	{ USB_DEVICE(0x0489, 0xe027), .driver_info = BTUSB_IGNORE },
+ 
+ 	/* Atheros AR9285 Malbec with sflash firmware */
+ 	{ USB_DEVICE(0x03f0, 0x311d), .driver_info = BTUSB_IGNORE },
+ 
+ 	/* Atheros 3012 with sflash firmware */
+-	{ USB_DEVICE(0x0cf3, 0x3004), .driver_info = BTUSB_IGNORE },
++	{ USB_DEVICE(0x0cf3, 0x0036), .driver_info = BTUSB_ATH3012 },
++	{ USB_DEVICE(0x0cf3, 0x3004), .driver_info = BTUSB_ATH3012 },
++	{ USB_DEVICE(0x0cf3, 0x311d), .driver_info = BTUSB_ATH3012 },
++	{ USB_DEVICE(0x0cf3, 0x817a), .driver_info = BTUSB_ATH3012 },
++	{ USB_DEVICE(0x13d3, 0x3375), .driver_info = BTUSB_ATH3012 },
++	{ USB_DEVICE(0x04ca, 0x3005), .driver_info = BTUSB_ATH3012 },
+ 
+ 	/* Atheros AR5BBU12 with sflash firmware */
+ 	{ USB_DEVICE(0x0489, 0xe02c), .driver_info = BTUSB_IGNORE },
+ 
++	/* Atheros AR5BBU12 with sflash firmware */
++	{ USB_DEVICE(0x0489, 0xe03c), .driver_info = BTUSB_ATH3012 },
++
+ 	/* Broadcom BCM2035 */
+ 	{ USB_DEVICE(0x0a5c, 0x2035), .driver_info = BTUSB_WRONG_SCO_MTU },
+ 	{ USB_DEVICE(0x0a5c, 0x200a), .driver_info = BTUSB_WRONG_SCO_MTU },
