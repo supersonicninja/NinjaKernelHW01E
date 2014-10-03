@@ -155,9 +155,9 @@ struct sx150x_platform_data msm8960_sx150x_data[] = {
 
 #endif
 
-#define MSM_PMEM_ADSP_SIZE         0x9800000
+#define MSM_PMEM_ADSP_SIZE         0x4000000 /* 64MB */
 #define MSM_PMEM_AUDIO_SIZE        0x2B4000
-#define MSM_PMEM_SIZE 0x5000000 /* 80MB */
+#define MSM_PMEM_SIZE 0x4000000 /* 64MB */
 #define MSM_LIQUID_PMEM_SIZE 0x4000000 /* 64 Mbytes */
 #define MSM_HDMI_PRIM_PMEM_SIZE 0x4000000 /* 64 Mbytes */
 
