@@ -9,7 +9,6 @@
 #include <linux/irq.h>
 #include <linux/module.h>
 #include <linux/interrupt.h>
-#include <linux/syscore_ops.h>
 
 #include "internals.h"
 

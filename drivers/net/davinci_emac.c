@@ -1008,7 +1008,7 @@ static void emac_rx_handler(void *token, int len, int status)
 	int			ret;
 
 	/* free and bail if we are shutting down */
-	if (unlikely(!netif_running(ndev))) {
+	if (unlikely(!netif_running(ndev) || !netif_carrier_ok(ndev))) {
 		dev_kfree_skb_any(skb);
 		return;
 	}
@@ -1037,9 +1037,7 @@ static void emac_rx_handler(void *token, int len, int status)
 recycle:
 	ret = cpdma_chan_submit(priv->rxchan, skb, skb->data,
 			skb_tailroom(skb), GFP_KERNEL);
-
-	WARN_ON(ret == -ENOMEM);
-	if (unlikely(ret < 0))
+	if (WARN_ON(ret < 0))
 		dev_kfree_skb_any(skb);
 }
 
@@ -1049,7 +1047,7 @@ static void emac_tx_handler(void *token, int len, int status)
 	struct net_device	*ndev = skb->dev;
 
 	if (unlikely(netif_queue_stopped(ndev)))
-		netif_wake_queue(ndev);
+		netif_start_queue(ndev);
 	ndev->stats.tx_packets++;
 	ndev->stats.tx_bytes += len;
 	dev_kfree_skb_any(skb);

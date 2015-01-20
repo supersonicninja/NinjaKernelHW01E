@@ -562,9 +562,6 @@ int rt2x00queue_write_tx_frame(struct data_queue *queue, struct sk_buff *skb,
 	u8 rate_idx, rate_flags;
 	int ret = 0;
 
-	/*
-	 * That function must be called with bh disabled.
-	 */
 	spin_lock(&queue->tx_lock);
 
 	entry = rt2x00queue_get_entry(queue, Q_INDEX);
@@ -848,8 +845,13 @@ void rt2x00queue_index_inc(struct queue_entry *entry, enum queue_index index)
 	spin_unlock_irqrestore(&queue->index_lock, irqflags);
 }
 
-void rt2x00queue_pause_queue_nocheck(struct data_queue *queue)
+void rt2x00queue_pause_queue(struct data_queue *queue)
 {
+	if (!test_bit(DEVICE_STATE_PRESENT, &queue->rt2x00dev->flags) ||
+	    !test_bit(QUEUE_STARTED, &queue->flags) ||
+	    test_and_set_bit(QUEUE_PAUSED, &queue->flags))
+		return;
+
 	switch (queue->qid) {
 	case QID_AC_VO:
 	case QID_AC_VI:
@@ -864,15 +866,6 @@ void rt2x00queue_pause_queue_nocheck(struct data_queue *queue)
 	default:
 		break;
 	}
-}
-void rt2x00queue_pause_queue(struct data_queue *queue)
-{
-	if (!test_bit(DEVICE_STATE_PRESENT, &queue->rt2x00dev->flags) ||
-	    !test_bit(QUEUE_STARTED, &queue->flags) ||
-	    test_and_set_bit(QUEUE_PAUSED, &queue->flags))
-		return;
-
-	rt2x00queue_pause_queue_nocheck(queue);
 }
 EXPORT_SYMBOL_GPL(rt2x00queue_pause_queue);
 
@@ -935,7 +928,7 @@ void rt2x00queue_stop_queue(struct data_queue *queue)
 		return;
 	}
 
-	rt2x00queue_pause_queue_nocheck(queue);
+	rt2x00queue_pause_queue(queue);
 
 	queue->rt2x00dev->ops->lib->stop_queue(queue);
 

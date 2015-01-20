@@ -1195,10 +1195,9 @@ static ssize_t bin_dn_node_address(struct file *file,
 
 		/* Convert the decnet address to binary */
 		result = -EIO;
-		nodep = strchr(buf, '.');
+		nodep = strchr(buf, '.') + 1;
 		if (!nodep)
 			goto out;
-		++nodep;
 
 		area = simple_strtoul(buf, NULL, 10);
 		node = simple_strtoul(nodep, NULL, 10);
@@ -1356,7 +1355,7 @@ static ssize_t binary_sysctl(const int *name, int nlen,
 
 	fput(file);
 out_putname:
-	__putname(pathname);
+	putname(pathname);
 out:
 	return result;
 }

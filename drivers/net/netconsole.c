@@ -307,11 +307,6 @@ static ssize_t store_enabled(struct netconsole_target *nt,
 		return err;
 	if (enabled < 0 || enabled > 1)
 		return -EINVAL;
-	if (enabled == nt->enabled) {
-		printk(KERN_INFO "netconsole: network logging has already %s\n",
-				nt->enabled ? "started" : "stopped");
-		return -EINVAL;
-	}
 
 	if (enabled) {	/* 1 */
 
@@ -630,7 +625,6 @@ static int netconsole_netdev_event(struct notifier_block *this,
 		goto done;
 
 	spin_lock_irqsave(&target_list_lock, flags);
-restart:
 	list_for_each_entry(nt, &target_list, list) {
 		netconsole_target_get(nt);
 		if (nt->np.dev == dev) {
@@ -643,17 +637,21 @@ restart:
 			case NETDEV_UNREGISTER:
 				/*
 				 * rtnl_lock already held
-				 * we might sleep in __netpoll_cleanup()
 				 */
-				spin_unlock_irqrestore(&target_list_lock, flags);
-				__netpoll_cleanup(&nt->np);
-				spin_lock_irqsave(&target_list_lock, flags);
-				dev_put(nt->np.dev);
-				nt->np.dev = NULL;
+				if (nt->np.dev) {
+					spin_unlock_irqrestore(
+							      &target_list_lock,
+							      flags);
+					__netpoll_cleanup(&nt->np);
+					spin_lock_irqsave(&target_list_lock,
+							  flags);
+					dev_put(nt->np.dev);
+					nt->np.dev = NULL;
+					netconsole_target_put(nt);
+				}
 				nt->enabled = 0;
 				stopped = true;
-				netconsole_target_put(nt);
-				goto restart;
+				break;
 			}
 		}
 		netconsole_target_put(nt);
